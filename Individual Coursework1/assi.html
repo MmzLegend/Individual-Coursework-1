@@ -186,5 +186,125 @@
     </div>
 </div>
 </div>
+<script type="text/javascript" src="lessons.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script type="text/javascript">
+var webstore = new Vue({
+    el: '#app',
+    data: {
+        showProduct: true,
+        lowHigh: 'Ascending',
+        lessons: lessons,
+        cart: [],
+        searchInput: '',
+        sortBy: '--Sort By--',
+        firstName: "",
+        lastName: "",
+        phoneNumber: ""
+    },
+    methods: {
+        showCheckout() {
+            this.showProduct = this.showProduct ? false : true;
+        },
+        addToCart(lesson) {
+            this.cart.push(lesson)
+            lesson.Availablestock -= 1
+            console.log(this.cart)
+        },
+        checkOut() {
+            let show = this.cart
+            return show
+        },
+        removeCartItem(id) {
+            let showcart = this.cart
+            let less = this.lessons
+            for (let i = 0; i < showcart.length; i++) {
+                console.log(showcart[i].id)
+                if (id == showcart[i].id) {
+                    showcart.splice(i, 1)
 
+                }
+            }
+            for (let i = 0; i < less.length; i++) {
+                console.log(less[i].id)
+                if (id == less[i].id) {
+                    less[i].Availablestock += 1
+
+                }
+            }
+        },
+        placeOrder() {
+            let showcart = this.cart
+            if (this.firstName == '' && this.lastName == '' && this.phoneNumber == '' && this.cart.length == 0) {
+                Swal.fire(
+                    '404 not found!!!',
+                    'Please Fill in the details!',
+                    'Error'
+                )
+            }
+            else{
+                Swal.fire(
+                'Successful!!!',
+                'Your order has been submitted successfully!',
+                'success'
+                )
+                this.firstName = ''
+                this.lastName = ''
+                this.phoneNumber = ''
+                showcart.splice(0, showcart.length)
+            }
+            
+        },
+        cartCount(id) {
+            let count = 0
+            for (let i = 0; i < this.cart.length; i++) {
+                if (this.cart[i] === id) {
+                    count++;
+                }
+            }
+            return count
+        },
+        sortByPrice: function (priceArray) {
+            function compare(a, b) {
+                if (a.price > b.price)
+                    return 1;
+                if (a.price < b.price)
+                    return -1;
+                return 0;
+            }
+            return priceArray.sort(compare);
+        },
+        sortBySubject: function (subjectArray) {
+            function compare(a, b) {
+                if (a.subject > b.subject)
+                    return 1;
+                if (a.subject < b.subject)
+                    return -1;
+                return 0;
+            }
+            return subjectArray.sort(compare);
+        },
+        sortByLocation: function (locationArray) {
+            function compare(a, b) {
+                if (a.location > b.location)
+                    return 1;
+                if (a.location < b.location)
+                    return -1;
+                return 0;
+            }
+            return locationArray.sort(compare);
+        },
+        sortByAva: function (avaArray) {
+            function compare(a, b) {
+                if (a.Availablestock > b.Availablestock)
+                    return 1;
+                if (a.Availablestock < b.Availablestock)
+                    return -1;
+                return 0;
+            }
+            return avaArray.sort(compare);
+        },
+
+
+</body>
 </html>
