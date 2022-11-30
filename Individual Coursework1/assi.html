@@ -320,6 +320,20 @@ var webstore = new Vue({
             else if (this.sortBy == 'location') {
                 tempLessons = this.sortByLocation(tempLessons)
             }
+            else if (this.sortBy == 'Availablestock') {
+                tempLessons = this.sortByAva(tempLessons)
+            }
+
+            if (this.lowHigh == 'Ascending') {
+                return tempLessons
+            }
+            else if (this.lowHigh == 'Descending') {
+                return tempLessons.reverse()
+            }
+            return tempLessons
+        }
+
+    },
 
 </script>
 
