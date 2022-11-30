@@ -235,7 +235,7 @@ var webstore = new Vue({
         },
         placeOrder() {
             let showcart = this.cart
-            if (this.firstName == '' && this.lastName == '' && this.phoneNumber == '' && this.cart.length == 0) {
+            if (this.firstName == '' && this.lastName == '' && this.phoneNumber == '' && this.cart.length == 0 ) {
                 Swal.fire(
                     '404 not found!!!',
                     'Please Fill in the details!',
@@ -305,6 +305,17 @@ var webstore = new Vue({
             return avaArray.sort(compare);
         },
 
+        filterLessons: function () {
+            let tempLessons = this.lessons
 
+            tempLessons = tempLessons.filter((lesson) => {
+                return lesson.subject.toLowerCase().match(this.searchInput.toLowerCase()) || lesson.location.toLowerCase().match(this.searchInput.toLowerCase())
+            })
+            if (this.sortBy == 'price') {
+                tempLessons = this.sortByPrice(tempLessons)
+            }
+
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.js"></script>
 </body>
 </html>
