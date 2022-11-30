@@ -314,7 +314,14 @@ var webstore = new Vue({
             if (this.sortBy == 'price') {
                 tempLessons = this.sortByPrice(tempLessons)
             }
+            else if (this.sortBy == 'subject') {
+                tempLessons = this.sortBySubject(tempLessons)
+            }
+            else if (this.sortBy == 'location') {
+                tempLessons = this.sortByLocation(tempLessons)
+            }
 
+</script>
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.js"></script>
 </body>
