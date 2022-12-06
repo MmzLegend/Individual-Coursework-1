@@ -150,7 +150,8 @@
                         </div>
                     </div>
                     <br>
-                    <button class="btn main-color text-black-50 mb-4" v-on:click="placeOrder">Place Order</button>
+                    <button class="btn main-color text-black-50 mb-4" v-if="firstName >1 || phoneNumber >1 || lastName >1" v-on:click="placeOrder">Place Order</button>
+                    <button class="btn main-color text-black-50 mb-4" v-else disabled>Place Order</button>
                 </div>
 
             </div>
